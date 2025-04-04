@@ -1,9 +1,10 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 const MoviesContext = createContext()
 
 function MoviesProvider({ children }) {
     const [movies, setMovies] = useState();
-
+    const [searchText, setSearchText] = useState('');
+    const [error, setError] = useState(null);
     useEffect(() => {
         const api_key = import.meta.env.VITE_MOVIE_DB_API_KEY;
 
@@ -17,8 +18,9 @@ function MoviesProvider({ children }) {
                 .catch((err) => setError(err.message));
         }
 
+
         fetchMovies();
-    }, []);
+    }, [searchText]);
 
 
     return (
