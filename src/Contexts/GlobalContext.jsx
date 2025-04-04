@@ -8,7 +8,7 @@ function MoviesProvider({ children }) {
         const api_key = import.meta.env.VITE_MOVIE_DB_API_KEY;
 
         function fetchMovies() {
-            fetch("https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${searchText}")
+            fetch(`https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query=${searchText}`)
                 .then((res) => {
                     if (!res.ok) throw new Error("Something went wrong");
                     return res.json();
